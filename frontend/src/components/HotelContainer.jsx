@@ -1,5 +1,4 @@
 import HotelCard from "./HotelCard";
-// import hotels from "../utils/hotels"
 import { useEffect, useState } from "react";
 
 const HotelContainer = () => {
@@ -9,14 +8,13 @@ const HotelContainer = () => {
   },[])
 
   const getHotels = async() =>{
-    const data = await fetch('http://localhost:8000/hotel/hotels');
+    const data = await fetch('http://localhost:8000/api/hotels');
     const response = await data.json();
-    console.log(response);
     setHotels(response);
   }
 
   return (
-    <div>{hotels && <HotelCard hotels={hotels} />}</div>
+    <div className="mt-14 px-14 w-full">{hotels && <HotelCard hotels={hotels} />}</div>
   )
 }
 

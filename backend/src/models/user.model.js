@@ -5,19 +5,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique:true,
-        lowercase:true,
-        trim:true,
     },
     password:{
         type:String,
-        required:[true,"Password is required"],
+        required:true,
     },
-    bookingHistory :{
+    bookingHistory : [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Hotel"
-    }
-},{timestamps:true});
-
+        ref: "Booking"
+    }]
+});
 
 userSchema.pre('save', async function(next) {
     if(this.isModified("password")){

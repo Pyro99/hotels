@@ -1,24 +1,14 @@
-import { useNavigate } from "react-router-dom"
+import Dates from "../components/Dates";
 import Header from "../components/Header"
 import HotelContainer from "../components/HotelContainer"
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 const LandingPageLayout = () => {
-
-  const navigate = useNavigate();
-  const user = useSelector((store) => store.user);
-  
-  useEffect(()=>{
-    console.log(user);
-    if(user === null) {
-      navigate('/login'); 
-    }
-  });
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#212121] text-white relative">
         <Header />
+        <div className="absolute">
+        <Dates />
+        </div>
         <HotelContainer />
     </div>
   )

@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import userRouter from "./routes/user.route.js";
-import hotelRouter from "./routes/hotels.route.js";
-
+import hotelRouter from "./routes/hotel.route.js";
+import bookingRouter from "./routes/booking.route.js";
 const app = express();
 
 app.use(express.json({limit:"16kb"}));
@@ -14,7 +14,8 @@ app.get("/" , async (req, res) =>{
 })
 
 
-app.use('/user',userRouter);
-app.use('/hotel',hotelRouter);
+app.use('/api',userRouter);
+app.use('/api',hotelRouter);
+app.use('/api',bookingRouter);
 
 export {app};

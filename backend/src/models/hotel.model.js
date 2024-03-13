@@ -4,7 +4,6 @@ const hotelSchema = new mongoose.Schema({
     name :{
         type:String,
         required:true,
-        trim:true
     },
     imageSrc:{
         type:String,
@@ -18,24 +17,12 @@ const hotelSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    isbooked :{
-        type:Boolean,
-        default:false
-    },
-    bookedBy:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"User"
-    },
-    bookedOn:{
-        type:String,
-    },
-    bookedTill:{
-        type:String
-    },
-    bookedFor:{
-        type:String
-    }
-},{timestamps:true});
+    bookings: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Booking' 
+    }]   
+});
+
 
 
 export const Hotel = mongoose.model('Hotel',hotelSchema);

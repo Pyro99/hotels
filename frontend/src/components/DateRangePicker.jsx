@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getEndTime, getStartTime } from '../redux/timeSlice';
+import { getCheckInDate, getCheckOutDate } from '../redux/timeSlice';
 import { useDispatch } from 'react-redux';
 
 function DateRangePicker() {
@@ -12,25 +12,22 @@ function DateRangePicker() {
     const handleDateChange = (dates) => {
         const [start, end] = dates;
         setStartDate(start);
-        dispatch(getStartTime(start.getTime()));
         setEndDate(end);
-        dispatch(getEndTime(end.getTime()));
-        console.log('Start Date: ',start.getTime());
-        console.log("end date", end.getTime());
-        const diffTime = Math.abs(end.getTime() - start.getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        console.log("Days: ", diffDays);
+        const checkInDate = new Date(start) /1000;
+        const checkOutDate = new Date(end) /1000;
+        dispatch(getCheckInDate(checkInDate));
+        dispatch(getCheckOutDate(checkOutDate));
     };
-
     return (
         <div>
             <DatePicker
+                className='absolute'
                 selectsRange
                 startDate={startDate}
                 endDate={endDate}
                 onChange={handleDateChange}
                 inline
-            />
+            />  
         </div>
     );
 }
